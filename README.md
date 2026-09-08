@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo Task Board
 
-## Getting Started
+A small full-stack task board application built as part of the Full Stack Developer Intern practical assessment.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- View all tasks
+- Create a new task with a title and status
+- Update task status
+- Supported statuses:
+  - todo
+  - in-progress
+  - done
+- Server-side input validation
+- Loading, empty, and error states
+- MySQL database persistence
+- Parameterized SQL queries
+- TypeScript types shared between frontend and backend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js
+- React
+- TypeScript
+- Node.js
+- MySQL
+- mysql2
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+This project uses a single Next.js application.
 
-To learn more about Next.js, take a look at the following resources:
+The frontend is built using the Next.js App Router and React.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The backend uses Next.js API Route Handlers instead of a separate Express server. This keeps the application simple because the project is small and the frontend and backend can be maintained in one repository and application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MySQL is used for persistent task storage, with `mysql2` handling the database connection.
 
-## Deploy on Vercel
+## Why Next.js API Routes?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I chose Next.js API Route Handlers instead of creating a separate Express server because this is a small application with a limited API surface.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Using Route Handlers keeps the frontend and backend in one application and avoids unnecessary server and project setup while still providing a clear API boundary.
+
+## Project Structure
+
+```text
+app/
+  api/
+    tasks/
+      route.ts
+      [id]/
+        route.ts
+  page.tsx
+  layout.tsx
+  globals.css
+
+components/
+  TaskBoard.tsx
+  TaskForm.tsx
+  TaskItem.tsx
+
+lib/
+  db.ts
+
+types/
+  task.ts
+
+database/
+  schema.sql
+
+.env.example
+.gitignore
+README.md
+package.json
+tsconfig.json
