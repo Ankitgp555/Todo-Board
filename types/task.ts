@@ -6,3 +6,7 @@ export interface Task {
   status: TaskStatus;
   created_at: string;
 }
+
+export interface TaskApiError {
+  error: string;
+}
