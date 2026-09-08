@@ -90,29 +90,30 @@ export default function TaskBoard() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl space-y-6 p-6">
-      <header>
-        <h1 className="text-3xl font-bold text-gray-900">
-          Task Board
-        </h1>
+  <main className="min-h-screen px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-3xl space-y-5">
+              <header>
+                  <h1 className="text-4xl font-bold tracking-tight text-slate-900">
+                      Todo Task Board
+                  </h1>
 
-        <p className="mt-1 text-sm text-gray-600">
-          Manage your tasks and keep track of their progress.
-        </p>
-      </header>
+                  <p className=" ml-1 text-sm leading-6 text-slate-600">
+                      Just Note The Task and Track It
+                  </p>
+              </header>
 
       <TaskForm onTaskCreated={handleTaskCreated} />
 
       <section>
         {isLoading && (
-          <p className="text-sm text-gray-500">
-            Loading tasks...
-          </p>
+          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p className="text-sm text-slate-500">Loading tasks...</p>
+          </div>
         )}
 
         {!isLoading && error && (
           <p
-            className="rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+            className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"
             role="alert"
           >
             {error}
@@ -121,7 +122,7 @@ export default function TaskBoard() {
 
         {!isLoading && !error && updateError && (
           <p
-            className="mb-3 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+            className="mb-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"
             role="alert"
           >
             {updateError}
@@ -129,9 +130,12 @@ export default function TaskBoard() {
         )}
 
         {!isLoading && !error && tasks.length === 0 && (
-          <p className="rounded-md border border-gray-200 bg-gray-50 p-4 text-sm text-gray-600">
-            No tasks yet. Add your first task above.
-          </p>
+          <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center">
+            <p className="font-medium text-slate-800">No tasks yet</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Add your first task above to get started.
+            </p>
+          </div>
         )}
 
         {!isLoading && !error && tasks.length > 0 && (
@@ -147,6 +151,7 @@ export default function TaskBoard() {
           </div>
         )}
       </section>
-    </main>
-  );
+    </div>
+  </main>
+);
 }

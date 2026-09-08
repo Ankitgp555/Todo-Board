@@ -68,14 +68,15 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
-    >
+  <form
+    onSubmit={handleSubmit}
+    className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+  >
+    <div className="space-y-5">
       <div>
         <label
           htmlFor="title"
-          className="mb-1 block text-sm font-medium text-gray-700"
+          className="mb-2 block text-sm font-medium text-slate-700"
         >
           Task title
         </label>
@@ -85,16 +86,16 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="Enter a task"
+          placeholder="What needs to be done?"
           disabled={isSubmitting}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-500 disabled:bg-gray-100"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100"
         />
       </div>
 
       <div>
         <label
           htmlFor="status"
-          className="mb-1 block text-sm font-medium text-gray-700"
+          className="mb-2 block text-sm font-medium text-slate-700"
         >
           Status
         </label>
@@ -106,7 +107,7 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
             setStatus(event.target.value as TaskStatus)
           }
           disabled={isSubmitting}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-500 disabled:bg-gray-100"
+          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100"
         >
           <option value="todo">Todo</option>
           <option value="in-progress">In Progress</option>
@@ -115,7 +116,10 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
       </div>
 
       {error && (
-        <p className="text-sm text-red-600" role="alert">
+        <p
+          className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+          role="alert"
+        >
           {error}
         </p>
       )}
@@ -123,10 +127,11 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting ? "Adding..." : "Add Task"}
       </button>
-    </form>
-  );
+    </div>
+  </form>
+);
 }
